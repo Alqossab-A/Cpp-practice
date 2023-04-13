@@ -1,52 +1,22 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
-void welcome();
-
-char getYesNo();
-
-void printResponse(char responeToPrint);
-
-void askYesOrNoQuestion();
+void ChangeStr(string& str);
 
 int main() 
 {
-	// Asks user to enter y or n and returns response
-	askYesOrNoQuestion();
+	string myStr = "Druid";
+
+	ChangeStr(myStr);
+
+	cout << myStr << endl;
+
 
 	system("pause");
 }
 
-void welcome() 
+void ChangeStr(string& str)
 {
-	// Welcome the user to the progam
-	cout << "Welcome:\n";
-}
-
-char getYesNo() 
-{
-	// Ask the user yes or no?
-	cout << "Please answer: y or n. \n";
-
-	char response;
-
-	// Get user input
-	cin >> response;
-
-	return response;
-}
-
-void printResponse(char responseToPrint) 
-{
-	// Print response to screen
-	cout << "Your answer was: " << responseToPrint << endl;
-}
-
-void askYesOrNoQuestion() 
-{
-	welcome();
-
-	char answer = getYesNo();
-
-	printResponse(answer);
+	str += "!";
 }
