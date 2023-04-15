@@ -1,45 +1,22 @@
 #include <iostream>
 #include <string>
-using namespace std;
-// function overriding
+//using namespace std;
 
-void Print(string str);
-void Print(int i);
-void Print(string str1, string str2);
-void Print(int i, string str);
 
-int main() 
+
+int main()
 {
-	int myInt = 1;
-	string myStr = " me";
+	std::string myString;
+	myString = "My dogs name is: ";
 
-	// print here will only use the fuction that works
-	Print(myInt, myStr);
+	std::string first = "spot ";
+	std::string last = "jows";
+
+	myString += (first + last);
+	
+
+	std::cout << myString << std::endl;
 
 
 	system("pause");
-}
-
-void Print(string str)
-{
-	cout << str << endl;
-}
-
-void Print(int i)
-{
-	cout << i << endl;
-}
-
-void Print(string str1, string str2)
-{
-	cout << str1 << str2 << endl;
-}
-
-//being used since it meet the expression
-void Print(int i, string str)
-{
-	cout << i << str << endl;
-
-	cout << "interger value: " << i << endl;
-	cout << "string value: " << str << endl;
 }
