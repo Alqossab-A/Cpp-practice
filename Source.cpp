@@ -1,21 +1,21 @@
 #include <iostream>
 #include <string>
-//using namespace std;
+using namespace std;
 
 
 
 int main()
 {
-	std::string myString;
+	string myString;
 	myString = "My dogs name is: ";
 
-	std::string first = "spot ";
-	std::string last = "jows";
+	string first = "spot ";
+	string last = "jows";
 
 	myString += (first + last);
 	
 
-	std::cout << myString << std::endl;
+	cout << myString << endl;
 
 
 	system("pause");
