@@ -2,16 +2,26 @@
 #include <string>
 using namespace std;
 
-
+enum PlayerStatus {
+	PS_Crouched,
+	PS_Standing,
+	PS_Walking,
+	PS_Running
+};
 
 int main()
 {
-	int i = 1;
-	int j = 2;
-	int k = 3;
+	PlayerStatus status;
+	status = PS_Crouched;
 
-	if (i == k || i == j) {
-		cout << "This will only print out if the condition is met" << endl;
+	if (status == PS_Crouched) {
+		cout << "The player is crouching! \n";
+	}
+
+	status = PS_Running;
+
+	if (status == PS_Crouched) {
+		cout << "The player is crouching! \n";
 	}
 
 	system("pause");
