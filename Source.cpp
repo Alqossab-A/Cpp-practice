@@ -1,28 +1,60 @@
+//-------------------------------------------------------------------
 #include <iostream>
 #include <string>
+
+//-------------------------------------------------------------------------------------------------------------------------
 using namespace std;
 
-enum PlayerStatus {
-	PS_Crouched,
-	PS_Standing,
-	PS_Walking,
-	PS_Running
+//-------------------------------------------------------------------------------------------------------------------------
+struct LocationVector
+{
+	float X;
+	float Y;
+	float Z;
 };
 
+//-------------------------------------------------------------------------------------------------------------------------
+struct Player {
+	int Level;
+	float Health;
+	float Damage;
+	float Stamina;
+
+	LocationVector Location = { 0.f, 0.f, 0.f };
+
+	void TakeDamage(float dmg)
+	{
+		Health -= dmg;
+	}
+
+	int GetLevel()
+	{
+		return Level;
+	}
+
+	void DisplayLocation()
+	{
+		cout << "Location (" << Location.X << ", " << Location.Y << ", " << Location.Z << ")" << endl;
+	}
+};
+
+//-------------------------------------------------------------------------------------------------------------------------
 int main()
 {
-	PlayerStatus status;
-	status = PS_Crouched;
+	Player p_1;
+	p_1.Level = 1;
+	p_1.Health = 100.f;
+	p_1.Damage = 10.f;
+	p_1.Stamina = 20.f;
 
-	if (status == PS_Crouched) {
-		cout << "The player is crouching! \n";
-	}
+	cout << "p_1 Level = " << p_1.GetLevel() << endl;
 
-	status = PS_Running;
+	p_1.TakeDamage(40.f);
 
-	if (status == PS_Crouched) {
-		cout << "The player is crouching! \n";
-	}
+	cout << "p_1 has taken " << 40.f << " damage!" << endl;
+	cout << "p_1 Health = " << p_1.Health << endl;
+
+	p_1.DisplayLocation();
 
 	system("pause");
 }
