@@ -6,17 +6,13 @@ using namespace std;
 
 int main()
 {
-	string myString;
-	myString = "My dogs name is: ";
+	int i = 1;
+	int j = 2;
+	int k = 3;
 
-	string first = "spot ";
-	string last = "jows";
-
-	myString += (first + last);
-	
-
-	cout << myString << endl;
-
+	if (i == k || i == j) {
+		cout << "This will only print out if the condition is met" << endl;
+	}
 
 	system("pause");
 }
