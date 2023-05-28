@@ -6,55 +6,51 @@
 using namespace std;
 
 //-------------------------------------------------------------------------------------------------------------------------
-struct LocationVector
+struct Container
 {
-	float X;
-	float Y;
-	float Z;
-};
+	string Name;
 
-//-------------------------------------------------------------------------------------------------------------------------
-struct Player {
-	int Level;
-	float Health;
-	float Damage;
-	float Stamina;
-
-	LocationVector Location = { 0.f, 0.f, 0.f };
-
-	void TakeDamage(float dmg)
-	{
-		Health -= dmg;
-	}
-
-	int GetLevel()
-	{
-		return Level;
-	}
-
-	void DisplayLocation()
-	{
-		cout << "Location (" << Location.X << ", " << Location.Y << ", " << Location.Z << ")" << endl;
-	}
+	int X;
+	int Y;
+	int Z;
 };
 
 //-------------------------------------------------------------------------------------------------------------------------
 int main()
 {
-	Player p_1;
-	p_1.Level = 1;
-	p_1.Health = 100.f;
-	p_1.Damage = 10.f;
-	p_1.Stamina = 20.f;
+	Container container = { "Sam", 5, 6, 7 };
 
-	cout << "p_1 Level = " << p_1.GetLevel() << endl;
+	Container* PtrToCont = &container;
 
-	p_1.TakeDamage(40.f);
+	cout << (*PtrToCont).Name << endl;
 
-	cout << "p_1 has taken " << 40.f << " damage!" << endl;
-	cout << "p_1 Health = " << p_1.Health << endl;
-
-	p_1.DisplayLocation();
+	cout << PtrToCont->Name << endl;
 
 	system("pause");
 }
+
+/*
+Notes
+
+	cout << (*PtrToCont).Name << endl;
+
+Order of operation always starts with () so the order will look like. 1 derefrance 2 dot notation. 
+
+If there were no () then you would be acessing the .Name before the pointer has been derefanced.
+
+	cout << PtrToCont->Name << endl;
+
+sytax sugar is the -> for pointers rather then (*).
+
+	int arr[] = {1, 2, 3};
+
+	int* ArrPtr = arr;
+
+	cout << *ArrPtr << end; // returns 1
+
+	ArrPtr++
+
+	cout << *ArrPtr << end; // returns 2
+
+For arrays when you have a pointer, and you use the ++ operator it moves to the next element in the array.
+*/
