@@ -6,51 +6,62 @@
 using namespace std;
 
 //-------------------------------------------------------------------------------------------------------------------------
-struct Container
+class Dog
 {
-	string Name;
+public:
 
-	int X;
-	int Y;
-	int Z;
+	Dog();
+
+	string Name;
+	int Age;
+	float Health;
+
+	void Bark();
 };
 
 //-------------------------------------------------------------------------------------------------------------------------
 int main()
 {
-	Container container = { "Sam", 5, 6, 7 };
+	Dog dog;
 
-	Container* PtrToCont = &container;
+	cout << dog.Name << endl;
+	cout << dog.Age << endl;
+	cout << dog.Health << endl;
 
-	cout << (*PtrToCont).Name << endl;
+	dog.Name = "sam";
+	dog.Age = 14;
+	dog.Health = 43.5;
 
-	cout << PtrToCont->Name << endl;
+	cout << dog.Name << endl;
+	cout << dog.Age << endl;
+	cout << dog.Health << endl;
 
 	system("pause");
+}
+
+Dog::Dog()
+{
+	Bark();
+
+	Name = "Default Name";
+	Age = 10;
+	Health = 100.f;
+}
+
+void Dog::Bark()
+{
+	cout << "WOOF!" << endl;
 }
 
 /*
 Notes
 
-	cout << (*PtrToCont).Name << endl;
+Anything you wanna call outside the class has to be "public".
 
-Order of operation always starts with () so the order will look like. 1 derefrance 2 dot notation. 
+You can call a fucntion that has been made in a class within the constructor.
 
-If there were no () then you would be acessing the .Name before the pointer has been derefanced.
+Fuctions need a return type but the constructor itself doesn't need a return type.
 
-	cout << PtrToCont->Name << endl;
+Qualifying a fuction or a contructor needs the scope operator "::".
 
-sytax sugar is the -> for pointers rather then (*).
-
-	int arr[] = {1, 2, 3};
-
-	int* ArrPtr = arr;
-
-	cout << *ArrPtr << end; // returns 1
-
-	ArrPtr++
-
-	cout << *ArrPtr << end; // returns 2
-
-For arrays when you have a pointer, and you use the ++ operator it moves to the next element in the array.
 */
