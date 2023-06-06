@@ -6,52 +6,44 @@
 using namespace std;
 
 //-------------------------------------------------------------------------------------------------------------------------
-class Dog
+struct Cat
 {
-public:
+	Cat();
 
-	Dog();
+	int age;
+	float health;
 
-	string Name;
-	int Age;
-	float Health;
-
-	void Bark();
+	void Meow();
 };
+
+Cat::Cat()
+{
+	cout << "A new cat has been born" << endl;
+
+	age = 3;
+	health = 75;
+
+	Meow();
+}
+
+void Cat::Meow()
+{
+	cout << "My age is: " << age << "." << endl;
+	cout << "My health is: " << health << "." << endl;
+}
 
 //-------------------------------------------------------------------------------------------------------------------------
 int main()
 {
-	Dog dog;
+	Cat cat;
 
-	cout << dog.Name << endl;
-	cout << dog.Age << endl;
-	cout << dog.Health << endl;
+	cat.age += 5;
 
-	dog.Name = "sam";
-	dog.Age = 14;
-	dog.Health = 43.5;
-
-	cout << dog.Name << endl;
-	cout << dog.Age << endl;
-	cout << dog.Health << endl;
+	cat.Meow();
 
 	system("pause");
 }
 
-Dog::Dog()
-{
-	Bark();
-
-	Name = "Default Name";
-	Age = 10;
-	Health = 100.f;
-}
-
-void Dog::Bark()
-{
-	cout << "WOOF!" << endl;
-}
 
 /*
 Notes
@@ -63,5 +55,7 @@ You can call a fucntion that has been made in a class within the constructor.
 Fuctions need a return type but the constructor itself doesn't need a return type.
 
 Qualifying a fuction or a contructor needs the scope operator "::".
+
+Structs are like classes so they can have a constructor also.
 
 */
