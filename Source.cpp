@@ -2,60 +2,60 @@
 #include <iostream>
 #include <string>
 
-//-------------------------------------------------------------------------------------------------------------------------
 using namespace std;
 
-//-------------------------------------------------------------------------------------------------------------------------
-struct Cat
+class Animal
 {
-	Cat();
+public:
+	Animal();
+	Animal(string name, int age, int numberOfLimbs);
 
-	int age;
-	float health;
+	string Name;
+	int Age;
+	int NumberOfLimbs;
 
-	void Meow();
+	void Report();
 };
 
-Cat::Cat()
-{
-	cout << "A new cat has been born" << endl;
-
-	age = 3;
-	health = 75;
-
-	Meow();
-}
-
-void Cat::Meow()
-{
-	cout << "My age is: " << age << "." << endl;
-	cout << "My health is: " << health << "." << endl;
-}
-
-//-------------------------------------------------------------------------------------------------------------------------
 int main()
 {
-	Cat cat;
+	Animal animal;
 
-	cat.age += 5;
+	animal.Report();
 
-	cat.Meow();
+	Animal animal_2("Chetto", 7, 5);
 
 	system("pause");
+}
+
+Animal::Animal()
+{
+	cout << "An animal is born\n";
+
+	Name = "Default";
+	Age = 2;
+	NumberOfLimbs = 4;
+}
+
+Animal::Animal(string name, int age, int numberOfLimbs)
+	:Name(name), 
+	Age(age), 
+	NumberOfLimbs(numberOfLimbs)
+{
+	Report();
+}
+
+void Animal::Report()
+{
+	cout << "Name: " << Name << endl;
+	cout << "Age: " << Age << endl;
+	cout << "NumberOfLimbs: " << NumberOfLimbs << endl;
 }
 
 
 /*
 Notes
 
-Anything you wanna call outside the class has to be "public".
 
-You can call a fucntion that has been made in a class within the constructor.
-
-Fuctions need a return type but the constructor itself doesn't need a return type.
-
-Qualifying a fuction or a contructor needs the scope operator "::".
-
-Structs are like classes so they can have a constructor also.
 
 */
