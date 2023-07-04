@@ -1,7 +1,11 @@
 #include <iostream>
 #include <string>
 
+//--------------------------------------------------------------------------------------
+
 using namespace std;
+
+//--------------------------------------------------------------------------------------
 
 class Animal
 {
@@ -25,14 +29,24 @@ public:
 	void Speak();
 };
 
+class Corgi : public Dog
+{
+public:
+	Corgi(string name, int age, int numberOfLimbs);
+};
+
+//--------------------------------------------------------------------------------------
+
 int main()
 {
-	Dog dog("spot", 4, 5);
+	Corgi corgi("mark", 7, 3);
 
-	dog.Speak();
+	corgi.Speak();
 
 	system("pause");
 }
+
+//--------------------------------------------------------------------------------------
 
 Animal::Animal()
 {
@@ -65,20 +79,39 @@ Dog::Dog()
 	cout << "A dog is born" << endl;
 }
 
-Dog::Dog(string name, int age, int numberOfLimbs)
+Dog::Dog(string name, int age, int numberOfLimbs) : Animal(name, age, numberOfLimbs)
 {
-	Animal(name, age, numberOfLimbs);
+	
 }
 
 void Dog::Speak()
 {
-	cout << "little woof" << endl;
+	cout << "little woof\n" << endl;
+}
+
+Corgi::Corgi(string name, int age, int numberOfLlimbs) : Dog(name, age, numberOfLlimbs)
+{
+	cout << "Corgi is born" << endl;
 }
 
 
 /*
 Notes
 
-	To explain the code her the dog will call the animal constructor by default and print out an animal is born then since we have 3 parameters in the dog contructor and we call Animal with the 3 paramters it will print out a report of spot with a little woof
+	on line 72 adding : and then the second animal constructor we are telling it to only call the second one and not the first constructor.
+
+	Animal > Dog > corgi
+
+	Dog::Dog()
+{
+	cout << "Calling default Dog Constructor" << endl;
+}
+
+Dog::Dog(string name, int age, int limbs)
+{
+	cout << "Calling 3 argument Dog constructor" << endl;
+}
+
+line 92 give it some more thought to understand it. using the corgi constructor with 3 parameters then calling the dog constructor with 3 paramets send up calling the animal constructor with 3 parameters which will report what the corgies 3 params are. kinda neet
 
 */
