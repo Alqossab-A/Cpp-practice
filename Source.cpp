@@ -1,117 +1,126 @@
 #include <iostream>
 #include <string>
 
-//--------------------------------------------------------------------------------------
+//Namespace--------------------------------------------------------------------------------------
 
 using namespace std;
 
-//--------------------------------------------------------------------------------------
+//Classes--------------------------------------------------------------------------------------
 
-class Animal
+class Creature
 {
 public:
-	Animal();
-	Animal(string name, int age, int numberOfLimbs);
+	Creature();
 
+	void SetName(string name);
+	string GetName();
+
+	float GetHealth();
+	
+	void TakeDamage(float dmg);
+
+private:
+	float Health;
 	string Name;
-	int Age;
+
+protected:
 	int NumberOfLimbs;
 
-	void Report();
 };
 
-class Dog : public Animal
+class Goblin : public Creature
 {
 public:
-	Dog();
-	Dog(string name, int age, int numberOfLimbs);
+	Goblin();
 
-	void Speak();
+	int GetNumberOfLimbs();
 };
 
-class Corgi : public Dog
-{
-public:
-	Corgi(string name, int age, int numberOfLimbs);
-};
-
-//--------------------------------------------------------------------------------------
+//Main--------------------------------------------------------------------------------------
 
 int main()
 {
-	Corgi corgi("mark", 7, 3);
+	/*Creature Igor;
+	Igor.SetName("Igor");
+	cout << "Name: " << Igor.GetName() << endl;
+	cout << "Health: " << Igor.GetHealth() << endl;
 
-	corgi.Speak();
+	cout << "Igor will now take 35 dmg" << endl;
+	Igor.TakeDamage(35.f);*/
+
+	Goblin Gobby;
+	cout << "Name: " << Gobby.GetName() << endl;
+	cout << "Health: " << Gobby.GetHealth() << endl;
+	cout << "Number Of Limbs: " << Gobby.GetNumberOfLimbs() << endl;
+	cout << "Gobby will now take 35 dmg" << endl;
+	Gobby.TakeDamage(35.f);
+
+
+
 
 	system("pause");
 }
 
-//--------------------------------------------------------------------------------------
+//Declrations--------------------------------------------------------------------------------------
 
-Animal::Animal()
+Creature::Creature()
 {
-	cout << "An animal is born\n";
-
-	Name = "Default";
-	Age = 2;
-	NumberOfLimbs = 4;
+	Health = 100.f;
+	cout << "A creature has been created!\n";
 }
 
-Animal::Animal(string name, int age, int numberOfLimbs)
-	:Name(name), 
-	Age(age), 
-	NumberOfLimbs(numberOfLimbs)
+void Creature::SetName(string name)
 {
-	Report();
+	Name = name;
 }
 
-void Animal::Report()
+string Creature::GetName()
 {
-	cout << endl;
-	cout << "Name: " << Name << endl;
-	cout << "Age: " << Age << endl;
-	cout << "NumberOfLimbs: " << NumberOfLimbs << endl;
-	cout << endl;
+	return Name;
 }
 
-Dog::Dog()
+float Creature::GetHealth()
 {
-	cout << "A dog is born" << endl;
+	return Health;
 }
 
-Dog::Dog(string name, int age, int numberOfLimbs) : Animal(name, age, numberOfLimbs)
+void Creature::TakeDamage(float dmg)
 {
-	
+	float Total;
+	Total = Health - dmg;
+
+	if (Total <= 0.f)
+	{
+		cout << GetName() << " is dead\n";
+	}
+	else
+	{
+		Health -= dmg;
+	}
+
+	cout << "Health: " << Health << endl;
 }
 
-void Dog::Speak()
+Goblin::Goblin()
 {
-	cout << "little woof\n" << endl;
+	NumberOfLimbs = 5;
+
+	SetName("Gobby");
 }
 
-Corgi::Corgi(string name, int age, int numberOfLlimbs) : Dog(name, age, numberOfLlimbs)
+int Goblin::GetNumberOfLimbs()
 {
-	cout << "Corgi is born" << endl;
+	return NumberOfLimbs;
 }
-
 
 /*
 Notes
 
-	on line 72 adding : and then the second animal constructor we are telling it to only call the second one and not the first constructor.
+	Creating a getter and setter to use as an access method to a private varible is called encapsulation.
 
-	Animal > Dog > corgi
+	when you qualify the setname fucntion to the creature class you are in the creature class thus Name = name is possible.(you are in scope)
 
-	Dog::Dog()
-{
-	cout << "Calling default Dog Constructor" << endl;
-}
+	Goblin class is able to access NumberOfLimbs because its a child of Creature which allows it to access all public and protected varibles.
 
-Dog::Dog(string name, int age, int limbs)
-{
-	cout << "Calling 3 argument Dog constructor" << endl;
-}
-
-line 92 give it some more thought to understand it. using the corgi constructor with 3 parameters then calling the dog constructor with 3 paramets send up calling the animal constructor with 3 parameters which will report what the corgies 3 params are. kinda neet
 
 */
