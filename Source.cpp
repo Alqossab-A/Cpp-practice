@@ -5,55 +5,45 @@
 
 using namespace std;
 
-//Classes--------------------------------------------------------------------------------------
+//Struct--------------------------------------------------------------------------------------
 
-class Creature
+struct Character
 {
-public:
-	Creature();
+	Character();
 
-	void SetName(string name);
-	string GetName();
+	void PrintHealth();
 
-	float GetHealth();
-	
-	void TakeDamage(float dmg);
-
-private:
-	float Health;
 	string Name;
-
-protected:
-	int NumberOfLimbs;
-
+	float Health;
 };
 
-class Goblin : public Creature
+Character::Character()
 {
-public:
-	Goblin();
+	Name = "Default Name";
+	Health = 100.f;
+}
 
-	int GetNumberOfLimbs();
-};
+void Character::PrintHealth()
+{
+	cout << "Health = " << Health << endl;
+}
 
 //Main--------------------------------------------------------------------------------------
 
 int main()
 {
-	/*Creature Igor;
-	Igor.SetName("Igor");
-	cout << "Name: " << Igor.GetName() << endl;
-	cout << "Health: " << Igor.GetHealth() << endl;
+	for (int i = 0; i < 3; i++)
+	{
+		Character* PtrToChar = new Character();
 
-	cout << "Igor will now take 35 dmg" << endl;
-	Igor.TakeDamage(35.f);*/
+		cout << PtrToChar->Name << endl;
 
-	Goblin Gobby;
-	cout << "Name: " << Gobby.GetName() << endl;
-	cout << "Health: " << Gobby.GetHealth() << endl;
-	cout << "Number Of Limbs: " << Gobby.GetNumberOfLimbs() << endl;
-	cout << "Gobby will now take 35 dmg" << endl;
-	Gobby.TakeDamage(35.f);
+		PtrToChar->PrintHealth();
+
+		delete PtrToChar;
+	};
+
+
 
 
 
@@ -63,64 +53,15 @@ int main()
 
 //Declrations--------------------------------------------------------------------------------------
 
-Creature::Creature()
-{
-	Health = 100.f;
-	cout << "A creature has been created!\n";
-}
 
-void Creature::SetName(string name)
-{
-	Name = name;
-}
 
-string Creature::GetName()
-{
-	return Name;
-}
 
-float Creature::GetHealth()
-{
-	return Health;
-}
-
-void Creature::TakeDamage(float dmg)
-{
-	float Total;
-	Total = Health - dmg;
-
-	if (Total <= 0.f)
-	{
-		cout << GetName() << " is dead\n";
-	}
-	else
-	{
-		Health -= dmg;
-	}
-
-	cout << "Health: " << Health << endl;
-}
-
-Goblin::Goblin()
-{
-	NumberOfLimbs = 5;
-
-	SetName("Gobby");
-}
-
-int Goblin::GetNumberOfLimbs()
-{
-	return NumberOfLimbs;
-}
 
 /*
 Notes
 
-	Creating a getter and setter to use as an access method to a private varible is called encapsulation.
+	When we create the struct and then create a "new" character we are allocationg it to be stored in the heap. while its in the heap it will stay there until it has been delete or else it would just cause a memeory leak and crash the program.
 
-	when you qualify the setname fucntion to the creature class you are in the creature class thus Name = name is possible.(you are in scope)
-
-	Goblin class is able to access NumberOfLimbs because its a child of Creature which allows it to access all public and protected varibles.
-
+	remember you have to deallocate the pointer at the end of its life from the heap or else it will cause a memory leak. you will not be able to acess the pointer later on even tho the address will still be taken by it.
 
 */
