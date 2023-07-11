@@ -5,44 +5,24 @@
 
 using namespace std;
 
-//Struct--------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 
-struct Character
+class Character
 {
+public:
 	Character();
+	~Character();
 
-	void PrintHealth();
-
-	string Name;
-	float Health;
+	int* CharacterAge;
+	float* CharacterHealth;
 };
-
-Character::Character()
-{
-	Name = "Default Name";
-	Health = 100.f;
-}
-
-void Character::PrintHealth()
-{
-	cout << "Health = " << Health << endl;
-}
 
 //Main--------------------------------------------------------------------------------------
 
 int main()
 {
-	for (int i = 0; i < 3; i++)
-	{
-		Character* PtrToChar = new Character();
-
-		cout << PtrToChar->Name << endl;
-
-		PtrToChar->PrintHealth();
-
-		delete PtrToChar;
-	};
-
+	Character* bob = new Character;
+	delete bob;
 
 
 
@@ -51,9 +31,23 @@ int main()
 	system("pause");
 }
 
-//Declrations--------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------
 
+Character::Character()
+{
+	cout << "A new character was created.\n";
 
+	CharacterAge = new int(23);
+	CharacterHealth = new float(100.f);
+}
+
+Character::~Character()
+{
+	cout << "Character destroyed.\n";
+
+	delete CharacterAge;
+	delete CharacterHealth;
+}
 
 
 
