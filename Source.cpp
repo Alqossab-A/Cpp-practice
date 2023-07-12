@@ -1,61 +1,55 @@
 #include <iostream>
 #include <string>
 
-//Namespace--------------------------------------------------------------------------------------
-
 using namespace std;
 
-//--------------------------------------------------------------------------------------
-
-class Character
+class Critter
 {
 public:
-	Character();
-	~Character();
 
-	int* CharacterAge;
-	float* CharacterHealth;
+	Critter()
+	{
+		cout << "A critter is bron\n";
+		++CritterCount;
+	}
+
+	static void AnnounceCount()
+	{
+		cout << CritterCount << endl;
+	}
+
+	static int CritterCount;
 };
 
-//Main--------------------------------------------------------------------------------------
+int Critter::CritterCount = 0;
 
 int main()
 {
-	Character* bob = new Character;
-	delete bob;
-
-
-
+	Critter::AnnounceCount();
+	
+	Critter* crit = new Critter;
+	Critter::AnnounceCount();
+	delete crit;
 
 
 	system("pause");
 }
 
-//--------------------------------------------------------------------------------------
 
-Character::Character()
-{
-	cout << "A new character was created.\n";
-
-	CharacterAge = new int(23);
-	CharacterHealth = new float(100.f);
-}
-
-Character::~Character()
-{
-	cout << "Character destroyed.\n";
-
-	delete CharacterAge;
-	delete CharacterHealth;
-}
 
 
 
 /*
 Notes
 
-	When we create the struct and then create a "new" character we are allocationg it to be stored in the heap. while its in the heap it will stay there until it has been delete or else it would just cause a memeory leak and crash the program.
+	even tho the item is in a block sense it is stact is doesnt get destroyed
+	{
+		stacic Item item;
+	}
 
-	remember you have to deallocate the pointer at the end of its life from the heap or else it will cause a memory leak. you will not be able to acess the pointer later on even tho the address will still be taken by it.
+	the item in block will be destoryed
+	{
+		Item item;
+	}
 
 */
