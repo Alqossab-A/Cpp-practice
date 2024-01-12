@@ -7,7 +7,7 @@ int calCost(int x, int y);
 float calTax(int x, float y); 
 
 int main() {
-    const int small_room_price = 20;
+    const int small_room_price = 25;
     const int large_room_price = 35;
     const float tax = 1.06;
     const int estimate_expiry = 30;
